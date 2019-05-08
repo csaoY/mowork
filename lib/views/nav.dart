@@ -19,9 +19,9 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   void initState(){
     list
       ..add(HomePage())
+      ..add(ProjectPage())
       ..add(ToolPage())
-      ..add(MinePage())
-      ..add(ProjectPage());
+      ..add(MinePage());
     super.initState();
   }
 
