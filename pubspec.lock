@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
+  barcode_scan:
+    dependency: "direct main"
+    description:
+      name: barcode_scan
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.8"
   boolean_selector:
     dependency: transitive
     description:
@@ -41,11 +48,25 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttertoast:
+    dependency: "direct main"
+    description:
+      name: fluttertoast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.4"
   matcher:
     dependency: transitive
     description:

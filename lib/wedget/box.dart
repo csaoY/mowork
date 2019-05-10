@@ -38,6 +38,7 @@ class MoworkBox extends StatelessWidget {
               ),
             ),
             new Divider(
+              height: 0.5,
               color: center,
             ),
              Expanded(

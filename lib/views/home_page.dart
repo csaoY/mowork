@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import '../wedget/title.dart';
 import '../wedget/box.dart';
+import './scan.dart';
+import './msg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('首页'),
+        title: Top(),
       ),
       body: ListView(
         children: <Widget>[
@@ -45,7 +49,6 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 Atitle(title: '产品开发计划统计'),
                 Container(
-                
                   padding: EdgeInsets.all(10),
                   child: Row(
                     children: <Widget>[
@@ -63,7 +66,7 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                       ),
-                     Container(
+                      Container(
                         width: 80,
                         margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
                         child: Column(
@@ -77,7 +80,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Container(
-           
             margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: Column(
               children: <Widget>[
@@ -113,13 +115,12 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-              Container(
+          Container(
             margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: Column(
               children: <Widget>[
                 Atitle(title: 'issue统计'),
                 Container(
-                
                   padding: EdgeInsets.all(10),
                   child: Row(
                     children: <Widget>[
@@ -129,42 +130,44 @@ class HomePage extends StatelessWidget {
                           children: <Widget>[
                             MoworkBox(),
                             Container(
-                              margin:EdgeInsets.fromLTRB(20, 0, 0, 0),
-                              child:Column(children: <Widget>[
-                              Text('正常'),
-                              Text('预警'),
-                              Text('延期')
-                            ],)
-                            ),
-                            
+                                margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Text('正常'),
+                                    Text('预警'),
+                                    Text('延期')
+                                  ],
+                                )),
                           ],
                         ),
                       ),
-                       Expanded(
+                      Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                           Column(children: <Widget>[
-                             Text('本年'),
-                              Text('新增/关闭'),
-                               Text('2/0')
-                           ],),
-                           Column(children: <Widget>[
-                             Text('本年'),
-                              Text('新增/关闭'),
-                               Text('2/0')
-                           ],)
+                            Column(
+                              children: <Widget>[
+                                Text('本年'),
+                                Text('新增/关闭'),
+                                Text('2/0')
+                              ],
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text('本年'),
+                                Text('新增/关闭'),
+                                Text('2/0')
+                              ],
+                            )
                           ],
                         ),
                       ),
-                    
                     ],
                   ),
                 )
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -196,4 +199,52 @@ _getListData() {
   }
   print(widgets);
   return widgets;
+}
+
+class Top extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Text('深圳市伟博思科技有限公司', style: TextStyle(fontSize: 14)),
+            Icon(IconData(0xe607, fontFamily: 'iconfont'),
+                size: 15, color: Colors.white),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+              child: GestureDetector(
+                onTap: () {
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new MsgPage()),
+                      );
+                    },
+                child: Icon(IconData(0xe714, fontFamily: 'iconfont'),
+                    size: 20, color: Colors.white),
+              ),
+              margin: EdgeInsets.only(right: 20),
+            ),
+            Container(
+                //margin:EdgeInsets.only(right:20),
+                child: GestureDetector(
+                    child: Icon(IconData(0xe6f3, fontFamily: 'iconfont'),
+                        size: 20, color: Colors.white),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new sacnBody()),
+                      );
+                    })),
+          ],
+        )
+      ],
+    );
+  }
 }

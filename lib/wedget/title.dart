@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Atitle extends StatelessWidget {
-   Atitle({
+  Atitle({
     Key key,
     this.title,
+    this.color = Colors.blue,
   }) : super(key: key);
   final title;
-  
- 
+  final color;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,15 +16,16 @@ class Atitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(width: 2, height: 10, color: Colors.blue),
-        Container(width:10, height: 10),
+        Container(width: 10, height: 10),
         Expanded(
             child: Container(
-              child: Text(title),
-                  alignment: Alignment.centerLeft,
-              height: 30,
+          child: Text(title),
+          alignment: Alignment.centerLeft,
+          height: 30,
           decoration: new ShapeDecoration(
-         shape: UnderlineInputBorder( borderSide:BorderSide(color: Colors.blue, style: BorderStyle.solid, width: 1))
-          ),
+              shape: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: color, style: BorderStyle.solid, width: 1))),
         ))
       ],
     );
