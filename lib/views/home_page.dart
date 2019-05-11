@@ -181,7 +181,8 @@ _getListData() {
       children: <Widget>[
         Container(
           child: Text('公司名称'),
-          margin: EdgeInsets.all(10),
+          //margin: EdgeInsets.all(10),
+          margin:EdgeInsets.only(right:10)
         ),
         Expanded(
           child: new LinearProgressIndicator(

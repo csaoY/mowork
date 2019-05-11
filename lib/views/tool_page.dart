@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../wedget/title.dart';
+import './wrapper.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ToolPage extends StatelessWidget {
@@ -46,38 +47,57 @@ class ToolPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('工具'),
         ),
-        body: ListView(children: <Widget>[
-           Column(
+        body: ListView(
           children: <Widget>[
-            Column(
+            Container(
+                child: Column(
               children: <Widget>[
-                Atitle(title: '我的模块',color:Colors.white),
-                Container(
-                  //padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Wrap(
-                    spacing: 2, //主轴上子控件的间距
-                    runSpacing: 5, //交叉轴上子控件之间的间距
-                    children: [ToolNavigator(list: _list)],
-                  ),
-                ),
-                Container(
-                   // height: ScreenUtil.getInstance().setWidth(20),
-                    color: Color(0xFFF3F6FB)),
-                Atitle(title: '全部工具',color:Colors.white),
-                Container(
-                  //padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: Wrap(
-                    spacing: 2, //主轴上子控件的间距
-                    runSpacing: 5, //交叉轴上子控件之间的间距
-                    children: [ToolNavigator(list: _list)],
-                  ),
-                ),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      color: Colors.white,
+                      child: Column(
+                        children: <Widget>[
+                          Atitle(title: '我的模块', color: Colors.white),
+                          Container(
+                            //padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            child: Wrap(
+                              spacing: 2, //主轴上子控件的间距
+                              runSpacing: 5, //交叉轴上子控件之间的间距
+                              children: [ToolNavigator(list: _list)],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      color: Colors.white,
+                      child: Column(
+                        children: <Widget>[
+                          Atitle(title: '全部工具', color: Colors.white),
+                          Container(
+                            //padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+
+                            child: Wrap(
+                              spacing: 2, //主轴上子控件的间距
+                              runSpacing: 5, //交叉轴上子控件之间的间距
+                              children: [ToolNavigator(list: _list)],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+
+                    // Container(
+                    //    // height: ScreenUtil.getInstance().setWidth(20),
+                    //     color: Color(0xFFF3F6FB)),
+                  ],
+                )
               ],
-            )
+            )),
           ],
-        )
-        ],)
-        );
+        ));
   }
 }
 
@@ -105,16 +125,21 @@ class ToolNavigator extends StatelessWidget {
   Widget _toolNavUi(BuildContext context, item) {
     return InkWell(
         onTap: () {
-          print('点击了一下');
+          //print('点击了一下');
+           Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new Wrapper()),
+                      );
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Image.network('https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3053831727,4262545098&fm=58',width:50,height:40),
             Container(
-             // width: ScreenUtil.getInstance().setWidth(100),
-             // height: ScreenUtil.getInstance().setWidth(100),
-             width:60,height:60,
+              // width: ScreenUtil.getInstance().setWidth(100),
+              // height: ScreenUtil.getInstance().setWidth(100),
+              width: 60, height: 60,
               //color:Color(0xFF5495FF),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),

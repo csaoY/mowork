@@ -47,10 +47,11 @@ class _DynamicState extends State<Dynamic> {
                       softWrap: true,
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Color(0xFF282828), fontSize: 15, height: 1.4)),
+                          color: Color(0xFF282828), fontSize: 15, height: 1.2)),
                 ),
                 Container(
                     // height:500,
+                    margin: EdgeInsets.only(top:5),
                     child: GridView.count(
                   physics: new NeverScrollableScrollPhysics(),
                   primary: false,
@@ -97,6 +98,7 @@ class _DynamicState extends State<Dynamic> {
                   children: <Widget>[
                     Expanded(
                       child: Container(
+                        margin:EdgeInsets.only(top:5,),
                         color: Color(0xFFF3F6FB),
                         padding: EdgeInsets.all(10),
                         child: Column(
@@ -119,39 +121,43 @@ class _DynamicState extends State<Dynamic> {
                                   margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                                 ),
                                 InkWell(
-                                  child: Text('李东,'),
+                                  child: Text('李东,',style:TextStyle(color:Color(0xFF5495FF))),
                                   onTap: () {
                                     print('123455');
                                   },
                                 ),
                                 InkWell(
-                                  child: Text('李东,'),
+                                  child: Text('李东,',style:TextStyle(color:Color(0xFF5495FF))),
                                 ),
                                 InkWell(
-                                  child: Text('李东,'),
+                                  child: Text('李东,',style:TextStyle(color:Color(0xFF5495FF))),
                                 )
                               ],
                             ),
-                            Wrap(
-                              //  alignment:WrapAlignment.start,
-                              //   spacing: 2, //主轴上子控件的间距
-                              //   runSpacing: 5, //交叉轴上子控件之间的间距
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                InkWell(
-                                  onTap: () {},
-                                  child: Text('我的姓名'),
-                                ),
-                                RichText(
-                                  text:TextSpan(
-                                    text:' 我是谁的辛苦了晋段赛各环节的世界观顺口溜回家大哥；啊'
-                                  ),
-                                 
-                                  softWrap: true,
+                            Container(
+                              margin: EdgeInsets.only(top:10),
+                              child: RichText(
+                                  text: TextSpan(
+                                      text: '爱因斯坦: ',
+                                      style: TextStyle(
+                                        color: Color(0xFF5495FF),
+                                        fontSize: 14,
+                                      ),
+                                       //recognizer: recognizer,
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: '我是谁的辛苦了晋段赛各环节的世界观顺口溜回家大哥；啊',
+                                            style: TextStyle(
+                                              color: Color(0xFF000000),
+                                              fontSize: 14,
+                                            ))
+                                      ]),
+                                 // softWrap: true,
                                   textAlign: TextAlign.left,
-                                )
-                              ],
-                            )
+                                ) ,
+                            ),
+                             
+                           
                           ],
                         ),
                       ),
@@ -166,3 +172,4 @@ class _DynamicState extends State<Dynamic> {
     );
   }
 }
+

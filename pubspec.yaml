@@ -23,6 +23,7 @@ dependencies:
   flutter_screenutil: ^0.5.2  
   barcode_scan: ^0.0.4
   fluttertoast: ^3.0.4
+  flutter_easyrefresh: ^1.2.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -78,6 +79,7 @@ flutter:
     - img/home-bg.png
     - img/scene-bg.png
     - img/services.jpg
+    - img/03-min.jpg
   fonts:
     - family: iconfont
       fonts:
