@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 class scanqr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       home: sacnBody(),
     );
@@ -17,7 +14,7 @@ class scanqr extends StatelessWidget {
 class sacnBody extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return _MyScanState();
   }
 }
@@ -27,22 +24,24 @@ class _MyScanState extends State<sacnBody> {
 
   @override
   void initState() {
-    // TODO: implement initState
+  
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return Scaffold(
       appBar: new AppBar(
         title: new Text('QR Code'),
       ),
       body: new Center(
         child: new Column(
+         
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+           
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
               child: RaisedButton(

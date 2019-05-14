@@ -4,10 +4,10 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 class MsgPage extends StatelessWidget {
   var controller;
   void initState() {
-    controller = TabController(
-      length: 3,
-      //vsync: this, //动画效果的异步处理，默认格式，背下来即可
-    );
+    // controller = TabController(
+    //   length: 3,
+    //   //vsync: this, //动画效果的异步处理，默认格式，背下来即可
+    // );
   }
 
   @override
