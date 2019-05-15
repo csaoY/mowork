@@ -9,7 +9,7 @@ class ImagePickerWidget extends StatefulWidget {
 }
 
 class _ImagePickerState extends State<ImagePickerWidget> {  
-   List imgList=new List(); 
+  var _imgPath;
 
   @override
   Widget build(BuildContext context) {

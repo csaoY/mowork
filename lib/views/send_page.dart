@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 
 class SendPage extends StatelessWidget {
@@ -12,9 +15,9 @@ class SendPage extends StatelessWidget {
           actions: <Widget>[
             Container(child: Text('发表',style:TextStyle(fontSize:16)), alignment: Alignment.center,  padding: EdgeInsets.only(right:20),)
           ],
-          leading: Container(child: Text('取消',style:TextStyle(fontSize:16)), alignment: Alignment.center,
-        
-          )),
+          //leading: Container(child: Text('取消',style:TextStyle(fontSize:16)), alignment: Alignment.center,
+          //)
+          ),  
           body:Send() ,
     );
   }
@@ -95,8 +98,16 @@ _takePhoto() async {
     //var image = await ImagePicker.pickImage(source: ImageSource.camera);
     if(list.length<=9){
           var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+          //_cropImage(image);
+          File croppedFile = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          ratioX: 1.0,
+          ratioY: 1.0,
+          maxWidth: 512,
+          maxHeight: 512,
+        );
           setState(() {
-                list.insert(list.length-1,buildPhoto(image));
+                list.insert(list.length-1,buildPhoto(croppedFile));
           });
         }
 
@@ -115,6 +126,17 @@ _takePhoto() async {
   }
 
 }
+
+
+ Future<Null> _cropImage(File imageFile) async {
+        File croppedFile = await ImageCropper.cropImage(
+          sourcePath: imageFile.path,
+          ratioX: 1.0,
+          ratioY: 1.0,
+          maxWidth: 512,
+          maxHeight: 512,
+        );
+      }
 
 
 
