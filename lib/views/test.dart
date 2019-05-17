@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import './login.dart';
 class ImagePickerWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -10,24 +11,32 @@ class ImagePickerWidget extends StatefulWidget {
 
 class _ImagePickerState extends State<ImagePickerWidget> {  
   var _imgPath;
+  @override
+  void initState(){
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("ImagePicker"),
+          title: Text("测试"),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               _ImageView(_imgPath),
+              // RaisedButton(
+              //   onPressed: _takePhoto,
+              //   child: Text("拍照"),
+              // ),
+              // RaisedButton(
+              //   onPressed: _openGallery,
+              //   child: Text("选择照片"),
+              // ),
               RaisedButton(
-                onPressed: _takePhoto,
-                child: Text("拍照"),
-              ),
-              RaisedButton(
-                onPressed: _openGallery,
-                child: Text("选择照片"),
+                onPressed: exit,
+                child: Text("退出登录"),
               ),
             ],
           ),
@@ -48,21 +57,30 @@ class _ImagePickerState extends State<ImagePickerWidget> {
   }
 
   
-  /*拍照*/
-  _takePhoto() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+  // /*拍照*/
+  // _takePhoto() async {
+  //   var image = await ImagePicker.pickImage(source: ImageSource.camera);
+  //   setState(() {
+  //     _imgPath = image;
+  //   });
+  // }
 
-    setState(() {
-      _imgPath = image;
-    });
-  }
+  // /*相册*/
+  // _openGallery() async {
+  //   var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+  //   print(image);
+  //   setState(() {
+  //     _imgPath = image;
+  //   });
+  // }
+  exit() async{
+      Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+       SharedPreferences prefs = await _prefs;
+       prefs.clear();//清空键值
+       Navigator.of(context).pushAndRemoveUntil(
+            new MaterialPageRoute(
+                builder: (context) => new Login()),
+            (route) => route == null);
 
-  /*相册*/
-  _openGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    print(image);
-    setState(() {
-      _imgPath = image;
-    });
   }
 }

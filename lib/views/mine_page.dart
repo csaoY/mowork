@@ -1,5 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'dart:io';
+import '../service/service_methods.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MinePage extends StatelessWidget {
   @override
@@ -33,7 +39,25 @@ class Mine extends StatelessWidget {
   }
 }
 
-class MineHead extends StatelessWidget {
+class MineHead extends StatefulWidget {
+  @override
+  _MineHeadState createState() => _MineHeadState();
+}
+
+class _MineHeadState extends State<MineHead> {
+  var touxiang="";
+
+  @override
+  void initState() {
+   getUserInfo().then((info) {
+      print(info);
+      setState(() {
+        touxiang=info['data']['face'];
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +86,20 @@ class MineHead extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(child:   Image.asset('img/services.jpg',width:50,height:50),),
+                  GestureDetector(
+                    onTap: () {
+                      _takePhoto();
+                    },
+                    child: Container(
+                      color:Colors.red,
+                      width:50,height:50,
+                      child: Image.network(
+              touxiang,
+               scale:1.0,
+               fit:BoxFit.contain
+            ),
+                    ),
+                  ),
                   Text('姓名'),
                   Text('公司名称'),
                   Row(
@@ -92,6 +129,56 @@ class MineHead extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  _takePhoto() async {
+    //var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    print('1############');
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    File file = await ImageCropper.cropImage(
+      sourcePath: image.path,
+      ratioX: 1.0,
+      ratioY: 1.0,
+      maxWidth: 512,
+      maxHeight: 512,
+    );
+    String path = file.path;
+    // String chuo = DateTime.now().millisecondsSinceEpoch.toString() + path.substring(path.lastIndexOf('.'));
+    String fileName = path.lastIndexOf('/') > -1
+        ? path.substring(path.lastIndexOf('/') + 1)
+        : path;
+    print('################t22452435235');
+    print(path);
+    print(fileName);
+    var img=new UploadFileInfo(new File(path), fileName);
+    print(new UploadFileInfo(new File(path), fileName));
+    upload(img).then((res) {
+    print('############终于成功之前那一步');
+    print(res);
+      setInfo(face: res['data']['pic_url']).then((data) {
+        Fluttertoast.showToast(
+            msg: "图片上传成功",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.TOP,
+            timeInSecForIos: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+            print(data);
+        print('############终于成功了');
+        getUserInfo().then((info) {
+      print(info);
+      setState(() {
+        touxiang=info['data']['face'];
+      });
+    });
+      });
+    }).catchError((e){
+      print('######$e');
+    });
+    // this.setState(() {
+    //      touxiang=croppedFile;
+    // });
   }
 }
 
@@ -351,16 +438,15 @@ class Five extends StatelessWidget {
                   children: <Widget>[
                     Icon(IconData(0xe7a6, fontFamily: 'iconfont'),
                         size: 24, color: Color(0xFFFFA21E)),
-                        Container(
-                         // height:80,
-                        alignment: Alignment.centerLeft,
-                          margin:EdgeInsets.fromLTRB(10, 0, 0, 0),
-                          child:Text('积分兑换',
-                        style: TextStyle(
-                          fontSize: 18,
-                          
-                        )) ,)
-                    
+                    Container(
+                      // height:80,
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text('积分兑换',
+                          style: TextStyle(
+                            fontSize: 18,
+                          )),
+                    )
                   ],
                 )),
                 Container(
@@ -368,9 +454,8 @@ class Five extends StatelessWidget {
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text('6000',
-                        style: TextStyle(
-                            fontSize:18,
-                            color: Color(0xFFD9D9D9))),
+                        style:
+                            TextStyle(fontSize: 18, color: Color(0xFFD9D9D9))),
                     Icon(IconData(0xe614, fontFamily: 'iconfont'),
                         size: 24, color: Color(0xFFD9D9D9)),
                   ],

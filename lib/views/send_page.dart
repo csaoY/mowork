@@ -98,7 +98,6 @@ _takePhoto() async {
     //var image = await ImagePicker.pickImage(source: ImageSource.camera);
     if(list.length<=9){
           var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-          //_cropImage(image);
           File croppedFile = await ImageCropper.cropImage(
           sourcePath: image.path,
           ratioX: 1.0,
@@ -106,10 +105,11 @@ _takePhoto() async {
           maxWidth: 512,
           maxHeight: 512,
         );
+        print(image);
           setState(() {
                 list.insert(list.length-1,buildPhoto(croppedFile));
           });
-        }
+          }
 
    
   }
@@ -126,17 +126,5 @@ _takePhoto() async {
   }
 
 }
-
-
- Future<Null> _cropImage(File imageFile) async {
-        File croppedFile = await ImageCropper.cropImage(
-          sourcePath: imageFile.path,
-          ratioX: 1.0,
-          ratioY: 1.0,
-          maxWidth: 512,
-          maxHeight: 512,
-        );
-      }
-
 
 
