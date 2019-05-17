@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class ImagePickerWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -25,7 +26,7 @@ class _ImagePickerState extends State<ImagePickerWidget> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _ImageView(_imgPath),
+              
               // RaisedButton(
               //   onPressed: _takePhoto,
               //   child: Text("拍照"),
@@ -38,6 +39,14 @@ class _ImagePickerState extends State<ImagePickerWidget> {
                 onPressed: exit,
                 child: Text("退出登录"),
               ),
+              // RaisedButton(
+              //   onPressed: () async{
+              //      Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+              //       SharedPreferences prefs = await _prefs;
+              //     print(prefs.getString('token'));
+              //   },
+              //   child: Text("hhahha"),
+              // ),
             ],
           ),
         ));

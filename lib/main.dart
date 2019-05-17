@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import './views/nav.dart';
 import './views/login.dart';
 import './service/service_methods.dart';
-import './provide/token.dart';
-import 'package:provide/provide.dart';
+//import './provide/token.dart';
+// import 'package:provide/provide.dart';
 
-void main() {
-  var providers = Providers()..provide(Provider.function((context) => Token()));
-    runApp(ProviderNode(
-      providers: providers,
-      child: MyApp(),
-    ));
-} 
-// void main(){
-//    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-//     .then((_) {
-//       runApp(new MyApp());
-//     });
-// }
+// void main() {
+//   // var providers = Providers()..provide(Provider.function((context) => Token()));
+//   //   runApp(ProviderNode(
+//   //     providers: providers,
+//   //     child: MyApp(),
+//   //   ));
+// } 
+void main(){
+   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+    .then((_) {
+      runApp(new MyApp());
+    });
+}
 
 
 
@@ -60,8 +60,8 @@ void main() {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:// token==null?Login():BottomNavigationWidget()
-      Login()
+      home: token==null?Login():BottomNavigationWidget()
+      //Login()
       //  Provide<Token>(
       //   builder: (context,child,token){
       //     return Token().token==null?Login():BottomNavigationWidget();

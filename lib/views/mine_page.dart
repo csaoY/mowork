@@ -91,7 +91,7 @@ class _MineHeadState extends State<MineHead> {
                       _takePhoto();
                     },
                     child: Container(
-                      color:Colors.red,
+                     
                       width:50,height:50,
                       child: Image.network(
               touxiang,
@@ -286,7 +286,7 @@ class Four extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(
             0, ScreenUtil.getInstance().setHeight(30), 0, 0),
         color: Colors.white,
-        height: ScreenUtil.getInstance().setHeight(140),
+       // height: ScreenUtil.getInstance().setHeight(140),
         child: Row(children: <Widget>[
           Expanded(
             child: Column(

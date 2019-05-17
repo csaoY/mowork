@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../wedget/login_form_code.dart';
-import 'package:dio/dio.dart';
+//import 'package:dio/dio.dart';
 import '../service/service_methods.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './nav.dart';
-import '../provide/token.dart';
-import 'package:provide/provide.dart';
+
 
 class Login extends StatefulWidget {
   @override
@@ -108,12 +107,13 @@ class LoginState extends State<Login> {
         print(res['data']['token']);
         prefs.setString("token", res['data']['token']);
         prefs.setString("uid", res['data']['uid']);
+        print(prefs.getString('token'));
 
         Navigator.of(context).pushAndRemoveUntil(
             new MaterialPageRoute(
                 builder: (context) => new BottomNavigationWidget()),
             (route) => route == null);
-        Provide.value(context).change();
+        //Provide.value(context).change();
         showDialog(
             context: context,
             builder: (context) => AlertDialog(

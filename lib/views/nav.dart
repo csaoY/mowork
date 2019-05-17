@@ -76,7 +76,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                         color: Colors.blue, size: 20.0)
                     : Icon(IconData(0xe793, fontFamily: 'iconfont'),
                         size: 20.0),
-                title: Text('项目圈',
+                title: Text('测试',
                     style: TextStyle(
                         color: _currentIndex == 4 ? _active : _color))),
           ],

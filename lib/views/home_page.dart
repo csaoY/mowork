@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../wedget/title.dart';
 import '../wedget/box.dart';
 import './scan.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import './msg.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+//import 'package:barcode_scan/barcode_scan.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -259,11 +260,6 @@ class _TopState extends State<Top> {
                     onTap: () {
                       scan();
                       
-                      // Navigator.push(
-                      //   context,
-                      //   new MaterialPageRoute(
-                      //       builder: (context) => new sacnBody()),
-                      // );
                     })),
           ],
         )
@@ -273,26 +269,27 @@ class _TopState extends State<Top> {
     Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      // setState(() {
-      //   return this.barcode = barcode;
-      // });
+      setState(() {
+       
+      });
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
-        // setState(() {
-        //   return this.barcode = 'The user did not grant the camera permission!';
-        // });
+        setState(() {
+        
+        });
       } else {
-        // setState(() {
-        //   return this.barcode = 'Unknown error: $e';
-        // });
+        setState(() {
+          
+        });
       }
-    } on FormatException {
-      // setState(() => this.barcode =
-      //     'null (User returned using the "back"-button before scanning anything. Result)');
+    } on FormatException{
+      
     } catch (e) {
-      // setState(() => this.barcode = 'Unknown error: $e');
+      
     }
   }
+
+ 
 }
 
 
